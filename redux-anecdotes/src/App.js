@@ -2,6 +2,7 @@ import React , { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { initialiseAnecdotes } from './reducers/anecdoteReducer';
 import AnecdoteList from './components/AnecdoteList';
+import NewAnecdote from './components/NewAnecdote';
 
 
 const App = (props) => {
@@ -11,10 +12,12 @@ const App = (props) => {
     }, [props]);
 
     return (
-        <>  
+        <>
             <h1>Programming Anecdotes</h1>
             <AnecdoteList />
+            <NewAnecdote/>
         </>
+       
     );
 };
 

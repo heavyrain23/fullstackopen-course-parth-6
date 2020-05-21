@@ -10,13 +10,24 @@ const reducer = (state = [], action) => {
              return state.map(anecdote => 
                  anecdote.id !== action.data.id 
                  ? anecdote : {...anecdote, votes: anecdote.votes + 1});
+
+        case 'ADD_ANECDOTE':
+            return [...state, action.data]
              
         default:
-            return state;
-
+            return state;   
     }
-
     
+};
+
+export const setAnecdote = (content) => {
+    return async dispatch => {
+        const data = await anecdoteService.createAnecdote(content);
+        dispatch({
+            type: 'ADD_ANECDOTE',
+            data: data
+        });
+    };
 };
 
 
