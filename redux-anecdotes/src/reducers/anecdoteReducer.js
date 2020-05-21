@@ -12,8 +12,13 @@ const reducer = (state = [], action) => {
                  ? anecdote : {...anecdote, votes: anecdote.votes + 1});
 
         case 'ADD_ANECDOTE':
-            return [...state, action.data]
-             
+            return [...state, action.data];
+        
+        case 'DELETE_ANECDOTE':
+             return state.filter(anecdote => anecdote.id !== action.data.id
+             ? anecdote : anecdote.id = null)
+                
+                                     
         default:
             return state;   
     }
@@ -41,6 +46,17 @@ export const setVote = (object) => {
         });
     };
 };
+
+
+export const deleteAnecdote = (id) => {
+    return async dispatch => {
+        const data = await anecdoteService.deleteAnecdote(id);
+        dispatch({
+            type: 'DELETE_ANECDOTE',
+            data: data
+        })
+    }
+}
 
 
 export const initialiseAnecdotes = () => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {setVote} from './../reducers/anecdoteReducer'
+import {setVote, deleteAnecdote} from './../reducers/anecdoteReducer'
 
 
 const AnecdoteList = (props) => {
@@ -8,7 +8,12 @@ const AnecdoteList = (props) => {
     const vote = (object) => {
         props.setVote(object);
     };
-
+    
+    const deleteButtonHandler = (id) => {
+       props.deleteAnecdote(id);
+       
+    }
+    
     return (
         <div>
             <h1>Anecdotes</h1>
@@ -18,7 +23,9 @@ const AnecdoteList = (props) => {
                         <p>{anecdote.content}</p>
                         <p>
                             {anecdote.votes} votes &nbsp;
-                            <button onClick={() => vote(anecdote)}>vote</button>
+                            <button onClick ={() => vote(anecdote)}>vote</button> &nbsp;
+                            <button onClick ={() => deleteButtonHandler(anecdote.id)}>delete</button>
+                            
                         </p>
                         <hr />
                     </div>
@@ -28,16 +35,21 @@ const AnecdoteList = (props) => {
     );
 };
 
+const anecdotesToShow = ({anecdotes,filter}) => 
+    anecdotes.filter(anecdote => anecdote.content.toLowerCase().includes(filter.toLowerCase())
+);
+
 
 
 const mapStateToProps = (state) => {    
     return {
-        anecdotesToShow: state.anecdotes
+        anecdotesToShow: anecdotesToShow(state)
     };
 }
 
 const mapDispatchToProps = {
     setVote,
+    deleteAnecdote,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AnecdoteList);

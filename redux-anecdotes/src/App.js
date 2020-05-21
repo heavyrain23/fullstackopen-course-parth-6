@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { initialiseAnecdotes } from './reducers/anecdoteReducer';
 import AnecdoteList from './components/AnecdoteList';
 import NewAnecdote from './components/NewAnecdote';
+import Filter from './components/Filter'
 
 
 const App = (props) => {
@@ -16,6 +17,7 @@ const App = (props) => {
             <h1>Programming Anecdotes</h1>
             <AnecdoteList />
             <NewAnecdote/>
+            <Filter/>
         </>
        
     );

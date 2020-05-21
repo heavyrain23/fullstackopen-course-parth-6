@@ -18,4 +18,9 @@ const createAnecdote = async content => {
     return response.data;
 }
 
-export default { getAll, getVote, createAnecdote  };
+const deleteAnecdote = async id => {
+    const response = await axios.delete(`${baseUrl}/${id}`);
+    return response.data;
+}
+
+export default { getAll, getVote, createAnecdote, deleteAnecdote };
