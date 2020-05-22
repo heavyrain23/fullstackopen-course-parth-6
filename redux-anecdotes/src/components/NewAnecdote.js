@@ -1,6 +1,7 @@
 import React from 'react';
 import {setAnecdote} from './../reducers/anecdoteReducer'
 import { connect } from 'react-redux';
+import {newNotification} from './../reducers/notificationReducer'
 
 
 const NewAnecdote = (props) => {
@@ -10,6 +11,7 @@ const NewAnecdote = (props) => {
         const content = event.target.anecdote.value;
         event.target.anecdote.value = '';
         props.setAnecdote(content);
+        props.newNotification(content)
 
     };
     
@@ -28,7 +30,10 @@ const NewAnecdote = (props) => {
 }
 
 const mapDispatchToProps = {
-    setAnecdote,
+    setAnecdote, 
+    newNotification
 }
+
+
 
 export default connect(null, mapDispatchToProps)(NewAnecdote)

@@ -15,16 +15,17 @@ const reducer = (state = [], action) => {
             return [...state, action.data];
         
         case 'DELETE_ANECDOTE':
-             return state.filter(anecdote => anecdote.id !== action.data.id
-             ? anecdote : anecdote.id = null)
-                
+             return {
+                ...state, 
+                anecdotes: state.anecdotes.filter(anecdote => anecdote.id !== action.data.id)
+            }
                                      
         default:
             return state;   
     }
     
 };
-
+debugger;
 export const setAnecdote = (content) => {
     return async dispatch => {
         const data = await anecdoteService.createAnecdote(content);

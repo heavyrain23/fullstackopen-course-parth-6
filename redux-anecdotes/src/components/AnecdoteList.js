@@ -1,15 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {setVote, deleteAnecdote} from './../reducers/anecdoteReducer'
+import {newNotification, voteNotification} from './../reducers/notificationReducer'
 
 
 const AnecdoteList = (props) => {
 
     const vote = (object) => {
         props.setVote(object);
+        props.voteNotification(object.content)
     };
     
-    const deleteButtonHandler = (id) => {
+    const deleteButtonHandler = (id) => { 
        props.deleteAnecdote(id);
        
     }
@@ -50,6 +52,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
     setVote,
     deleteAnecdote,
+    newNotification,
+    voteNotification
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AnecdoteList);

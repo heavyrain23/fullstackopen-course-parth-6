@@ -4,6 +4,7 @@ import { initialiseAnecdotes } from './reducers/anecdoteReducer';
 import AnecdoteList from './components/AnecdoteList';
 import NewAnecdote from './components/NewAnecdote';
 import Filter from './components/Filter'
+import Notification from './components/Notification'
 
 
 const App = (props) => {
@@ -15,9 +16,11 @@ const App = (props) => {
     return (
         <>
             <h1>Programming Anecdotes</h1>
+            <Notification/>
             <AnecdoteList />
             <NewAnecdote/>
             <Filter/>
+            
         </>
        
     );
